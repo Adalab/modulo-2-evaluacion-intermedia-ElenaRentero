@@ -2,10 +2,10 @@
 
 const select = document.querySelector('.js-select');
 const btn = document.querySelector('.js-btn');
-const paragraph = document.querySelector('js-paragraph');
+const paragraph = document.querySelector('.js-paragraph');
 let random = 0;
 
-// Funcion que recoge el valor de la opcion elegida por el usuario
+//Funcion que recoge el valor de la opcion elegida por el usuario
 function userSelection(){
     const selectValue = parseInt(select.value);
     return selectValue;
@@ -30,18 +30,18 @@ function pcSelection(random){
 // Funcion que compara ambos valores
 function compareOptions(userValue, pcValue){
     if (userValue > pcValue){
-        console.log (`¡Ha ganado el Ejército del Bien! Enhorabuena.`)
-    } else if (userValue === pcValue) {
-        console.log (`Empate.`)
+        paragraph.innerHTML = `¡Ha ganado el Ejército del Bien! Enhorabuena.`;
+    } else if (userValue < pcValue) {
+        paragraph.innerHTML = `¡Ha ganado el Ejército del Mal! Vuelve a intentarlo.`;
     } else {
-        console.log (`¡Ha ganado el Ejército del Mal! Vuelve a intentarlo.`)
+        paragraph.innerHTML = `Empate.`;
     }
 }
 
-/* Funcion que pinta en el HTML
+// Funcion que pinta en el HTML
 function paintHTML (result){
     paragraph.innerHTML = result;
-}*/
+}
 
 // Funcion manejadora
 function handleClick(event){
@@ -53,4 +53,4 @@ function handleClick(event){
 }
 
 // Evento que escucha el click en el boton
-btn.addEventListener('click', handleClick);
+btn.addEventListener('click', handleClick); 

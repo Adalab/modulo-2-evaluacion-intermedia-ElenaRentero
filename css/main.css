@@ -1,0 +1,22 @@
+.select{
+    border-color: grey;
+    padding: 10px 10px 10px 10px;
+    margin-right: 20px;
+}
+
+.button{
+    background-color: #581845;
+    padding: 10px 30px 10px 30px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+}
+
+.paragraph{
+    background-color: #581845;
+    padding: 10px 130px 10px 130px;
+    display: inline-block;
+    color: white;
+    border-radius: 5px;
+    opacity: 0.4;
+}

@@ -3,9 +3,12 @@
 const select = document.querySelector('.js-select');
 const btn = document.querySelector('.js-btn');
 const paragraph = document.querySelector('.js-paragraph');
+const user = document.querySelector('.js-pointsUser');
+const pc = document.querySelector('.js-pointsPc');
 let random = 0;
 let pointsPc = 0; 
 let pointsUser = 0; 
+let i = 0; 
 
 //Funcion que recoge el valor de la opcion elegida por el usuario
 function userSelection(){

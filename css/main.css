@@ -12,6 +12,10 @@
     border: none;
 }
 
+.hidden{
+    display: none;
+}
+
 .paragraph{
     background-color: #581845;
     padding: 10px 130px 10px 130px;

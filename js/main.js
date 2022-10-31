@@ -1,7 +1,8 @@
 'use strict';
 
 const select = document.querySelector('.js-select');
-const btn = document.querySelector('.js-btn');
+const btnStart = document.querySelector('.js-btn-start');
+const btnReset = document.querySelector('.js-btn-reset');
 const paragraph = document.querySelector('.js-paragraph');
 const user = document.querySelector('.js-pointsUser');
 const pc = document.querySelector('.js-pointsPc');
@@ -35,17 +36,36 @@ function pcSelection(random){
 // Funcion que compara ambos valores
 function compareOptions(userValue, pcValue){
     if (userValue > pcValue){
+        pointsUser ++;
+        i ++;
         return `¡Ha ganado el Ejército del Bien! Enhorabuena.`;
     } else if (userValue < pcValue) {
+        pointsPc ++;
+        i ++
         return `¡Ha ganado el Ejército del Mal! Vuelve a intentarlo.`;
     } else {
+        i ++
         return `Empate.`;
     }
 }
 
-// Funcion que pinta en el HTML
+// Funcion que cuenta hasta 10 en el index para reiniciar el juego
+function reset(){
+    if (i === 10){
+        btnStart.classList.add('hidden');
+        btnReset.classList.remove('hidden');
+    }
+}
+
+// Funcion que pinta en el HTML el resultado
 function paintHTML (result){
     paragraph.innerHTML = result;
+}
+
+// Función que pinta en el HTML los puntos
+function paintPoints(){
+    user.innerHTML = `Jugador: ${pointsUser}`;
+    pc.innerHTML = `Computadora: ${pointsPc}`; 
 }
 
 // Funcion manejadora
@@ -56,7 +76,9 @@ function handleClick(event){
     const pcValue = pcSelection(random);
     const result = compareOptions(userValue, pcValue);
     paintHTML(result);
+    paintPoints();
+    reset();
 }
 
 // Evento que escucha el click en el boton
-btn.addEventListener('click', handleClick); 
+btnStart.addEventListener('click', handleClick); 

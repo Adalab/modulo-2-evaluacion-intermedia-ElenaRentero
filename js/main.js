@@ -9,7 +9,7 @@ const pc = document.querySelector('.js-pointsPc');
 let random = 0;
 let pointsPc = 0; 
 let pointsUser = 0; 
-let i = 0; 
+let count = 0; 
 
 //Funcion que recoge el valor de la opcion elegida por el usuario
 function userSelection(){
@@ -37,23 +37,28 @@ function pcSelection(random){
 function compareOptions(userValue, pcValue){
     if (userValue > pcValue){
         pointsUser ++;
-        i ++;
+        count ++;
         return `¡Ha ganado el Ejército del Bien! Enhorabuena.`;
     } else if (userValue < pcValue) {
         pointsPc ++;
-        i ++
+        count ++
         return `¡Ha ganado el Ejército del Mal! Vuelve a intentarlo.`;
     } else {
-        i ++
+        count ++
         return `Empate.`;
     }
 }
 
 // Funcion que cuenta hasta 10 en el index para reiniciar el juego
 function reset(){
-    if (i === 10){
+    if (count === 10){
         btnStart.classList.add('hidden');
         btnReset.classList.remove('hidden');
+        if (pointsUser > pointsPc){
+            paragraph.innerHTML = `¡Enhorabuena has ganado el juego!`;
+        } else {
+            paragraph.innerHTML = `Lo sentimos, ha ganado el ejército del mal. Vuelve a intentarlo.`;
+        }
     }
 }
 
@@ -68,8 +73,8 @@ function paintPoints(){
     pc.innerHTML = `Computadora: ${pointsPc}`; 
 }
 
-// Funcion manejadora
-function handleClick(event){
+// Funcion manejadora del botón Start
+function handleClickStart(event){
     event.preventDefault();
     random = getRandomNumber(5);
     const userValue = userSelection();
@@ -80,5 +85,18 @@ function handleClick(event){
     reset();
 }
 
-// Evento que escucha el click en el boton
-btnStart.addEventListener('click', handleClick); 
+// Funcion manejadora del botón Reset
+function handleClickReset(event){
+    event.preventDefault();
+    pointsPc = 0;
+    pointsUser = 0;
+    count = 0;
+    paintPoints();
+    paragraph.innerHTML = `¡Comienza la batalla!`;
+    btnStart.classList.remove('hidden');
+    btnReset.classList.add('hidden');
+}
+
+// Evento que escucha el click en el boton de start y reset 
+btnStart.addEventListener('click', handleClickStart); 
+btnReset.addEventListener('click', handleClickReset);

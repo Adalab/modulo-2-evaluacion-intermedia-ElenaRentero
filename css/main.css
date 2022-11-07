@@ -10,7 +10,7 @@
 }
 
 .div{
-    background-image: url(/images/images.jpg);
+    background-image: url(../images/images.jpg);
     background-repeat: no-repeat;
     background-position: right;
     width: 510px;

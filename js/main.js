@@ -12,7 +12,7 @@ let pointsUser = 0;
 let count = 0; 
 
 //Funcion que recoge el valor de la opcion elegida por el usuario
-function userSelection(){
+function getUserSelection(){
     const selectValue = parseInt(select.value);
     return selectValue;
 }
@@ -23,7 +23,7 @@ function getRandomNumber(max) {
     }
 
 // Funcion para cambiar el random number por el valor asignado
-function pcSelection(random){
+function getPcSelection(random){
     if (random === 1 || random === 2 || random === 3){
         return 2
     } else if (random === 4){
@@ -43,9 +43,11 @@ function compareOptions(userValue, pcValue){
         pointsPc ++;
         count ++
         return `¡Ha ganado el Ejército del Mal! Vuelve a intentarlo.`;
-    } else {
+    } else if (userValue === pcValue){
         count ++
         return `Empate.`;
+    } else {
+        return `Tienes que seleccionar una raza.`;
     }
 }
 
@@ -63,12 +65,12 @@ function reset(){
 }
 
 // Funcion que pinta en el HTML el resultado
-function paintHTML (result){
+function renderHTML (result){
     paragraph.innerHTML = result;
 }
 
-// Función que pinta en el HTML los puntos
-function paintPoints(){
+// Funcion que pinta en el HTML los puntos
+function renderPoints(){
     user.innerHTML = `Jugador: ${pointsUser}`;
     pc.innerHTML = `Computadora: ${pointsPc}`; 
 }
@@ -77,11 +79,11 @@ function paintPoints(){
 function handleClickStart(event){
     event.preventDefault();
     random = getRandomNumber(5);
-    const userValue = userSelection();
-    const pcValue = pcSelection(random);
+    const userValue = getUserSelection();
+    const pcValue = getPcSelection(random);
     const result = compareOptions(userValue, pcValue);
-    paintHTML(result);
-    paintPoints();
+    renderHTML(result);
+    renderPoints();
     reset();
 }
 
@@ -91,7 +93,7 @@ function handleClickReset(event){
     pointsPc = 0;
     pointsUser = 0;
     count = 0;
-    paintPoints();
+    renderPoints();
     paragraph.innerHTML = `¡Comienza la batalla!`;
     btnStart.classList.remove('hidden');
     btnReset.classList.add('hidden');
